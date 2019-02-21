@@ -1,4 +1,6 @@
-﻿using System;
+﻿using log4net;
+using log4net.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,10 @@ namespace ConsoleApplicationSecondGit
 {
     public class Program
     {
+        public static ILog log = LogManager.GetLogger(typeof(Program)); // for Log4net
+        //public static Logger log = LogManager.GetCurrentClassLogger(); // for NLog
+        //public static Logger log = LogManager.GetLogger("rolling0"); // for NLog
+
         public static void Main(string[] args)
         {
             string jazzUrl = Environment.GetEnvironmentVariable("JAZZ_URL");
@@ -21,6 +27,18 @@ namespace ConsoleApplicationSecondGit
             Console.WriteLine("jazzPassword = " + jazzPassword);
             Console.WriteLine("jazzPin = " + jazzPin);
             Console.WriteLine("jazzDatabase = " + jazzDatabase);
+            //
+            Console.WriteLine("\n\n");
+            //
+            //BasicConfigurator.Configure();
+            XmlConfigurator.Configure();
+            //
+            //log.Trace("NLOG: Trace Level test");
+            log.Debug("2*Debug Level test");
+            log.Info("2*Info Level");
+            log.Warn("2*Warn Level");
+            log.Error("2*Error Level test");
+            log.Fatal("2*Fatal Level");
             //
             Console.WriteLine("Application Done");
         }
