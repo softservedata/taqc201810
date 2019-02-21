@@ -9,6 +9,7 @@ namespace UnitTestProjectSecondGit
         [TestMethod]
         public void TestMethod1()
         {
+            Console.WriteLine("Test Done!");
         }
     }
 }
