@@ -1,5 +1,6 @@
-﻿using log4net;
-using log4net.Config;
+﻿//using log4net;
+//using log4net.Config;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace ConsoleApplicationSecondGit
 {
     public class Program
     {
-        public static ILog log = LogManager.GetLogger(typeof(Program)); // for Log4net
-        //public static Logger log = LogManager.GetCurrentClassLogger(); // for NLog
+        //public static ILog log = LogManager.GetLogger(typeof(Program)); // for Log4net
+        public static Logger log = LogManager.GetCurrentClassLogger(); // for NLog
         //public static Logger log = LogManager.GetLogger("rolling0"); // for NLog
 
         public static void Main(string[] args)
@@ -31,12 +32,13 @@ namespace ConsoleApplicationSecondGit
             Console.WriteLine("\n\n");
             //
             //BasicConfigurator.Configure();
-            XmlConfigurator.Configure();
+            //XmlConfigurator.Configure();
             //
-            //log.Trace("NLOG: Trace Level test");
+            log.Trace("NLOG: Trace Level test");
             log.Debug("2*Debug Level test");
             log.Info("2*Info Level");
             log.Warn("2*Warn Level");
+            log.Warn("test");
             log.Error("2*Error Level test");
             log.Fatal("2*Fatal Level");
             //

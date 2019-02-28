@@ -1,12 +1,15 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace UnitTestProjectSecondGit
 {
-    [TestClass]
+    //[TestClass]
+    //[TestFixture]
     public class UnitTest1
     {
-        [TestMethod]
+        //[TestMethod]
+        //[Test]
         public void TestMethod1()
         {
             Console.WriteLine("Test Done!");
