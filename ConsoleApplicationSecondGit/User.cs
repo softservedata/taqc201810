@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTestProjectSecondGit.Data
+namespace ConsoleApplicationSecondGit
 {
     // 5. Add Builder by Interfaces
     public interface IUsername
@@ -159,8 +159,8 @@ namespace UnitTestProjectSecondGit.Data
         }
 
         // Override
-        public override string ToString()
-        //public string ToString()
+        //public override string ToString()
+        public string ToString()
         {
             return "Username: " + Username + " OrgPin: " + OrgPin + " DatabaseName: " + DatabaseName
                 + " Email: " + Email + " Address: " + Address;
