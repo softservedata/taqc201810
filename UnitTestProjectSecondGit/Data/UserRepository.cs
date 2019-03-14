@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitTestProjectSecondGit.Tools;
 
 namespace UnitTestProjectSecondGit.Data
 {
@@ -55,25 +56,25 @@ namespace UnitTestProjectSecondGit.Data
                 .Build();
         }
 
-        //public IList<IUser> FromCsv()
-        //{
-        //    return FromCsv("users.csv");
-        //}
+        public IList<IUser> FromCsv()
+        {
+            return FromCsv("users.csv");
+        }
 
-        //public IList<IUser> FromCsv(string filename)
-        //{
-        //    return User.GetAllUsers(new CSVReader(filename).GetAllCells());
-        //}
+        public IList<IUser> FromCsv(string filename)
+        {
+            return User.GetAllUsers(new CSVReader(filename).GetAllCells());
+        }
 
-        //public IList<IUser> FromExcel()
-        //{
-        //    return FromExcel("users.xlsx");
-        //}
+        public IList<IUser> FromExcel()
+        {
+            return FromExcel("users.xlsx");
+        }
 
-        //public IList<IUser> FromExcel(string filename)
-        //{
-        //    return User.GetAllUsers(new ExcelReader(filename).GetAllCells());
-        //}
+        public IList<IUser> FromExcel(string filename)
+        {
+            return User.GetAllUsers(new ExcelReader(filename).GetAllCells());
+        }
 
     }
 }

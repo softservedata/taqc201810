@@ -13,6 +13,8 @@ using NLog;
 using NUnit.Allure.Core;
 using NUnit.Allure.Attributes;
 using Allure.Commons;
+using UnitTestProjectSecondGit.Tools;
+using System.IO;
 
 namespace UnitTestProjectSecondGit
 {
@@ -40,6 +42,21 @@ namespace UnitTestProjectSecondGit
                 .SuccessLogin(user)
                 .Logout();
             log.Info("DONE VerifyLogin");
+        }
+
+        // DataProvider
+        private static readonly object[] CSVUsers =
+            ListUtils.ToMultiArray(UserRepository.Get().FromCsv());
+
+        // DataProvider
+        private static readonly object[] ExcelUsers =
+            ListUtils.ToMultiArray(UserRepository.Get().FromExcel());
+
+        //[Test, TestCaseSource("CSVUsers")]
+        //[Test, TestCaseSource("ExcelUsers")]
+        public void VerifyReadFromFiles(User user)
+        {
+            log.Info("START VerifyLogin with " + user);
         }
 
         [Test]
@@ -103,6 +120,20 @@ namespace UnitTestProjectSecondGit
             driver.FindElement(By.Id("password")).SendKeys("qwerty");
             Thread.Sleep(2000); // DO NOT USE
             //
+            ITakesScreenshot takesScreenshot = driver as ITakesScreenshot;
+            Screenshot screenshot = takesScreenshot.GetScreenshot();
+            byte[] bytes = screenshot.AsByteArray;
+            AllureLifecycle.Instance.AddAttachment("Screenshot", "image/png", bytes);
+            //
+            string htmlCode = driver.PageSource;
+            bytes = Encoding.ASCII.GetBytes(htmlCode);
+            AllureLifecycle.Instance.AddAttachment("HTMP_Source", "text/plain", bytes);
+            //
+            string file = File.ReadAllText("D:\\file.txt");
+            bytes = Encoding.ASCII.GetBytes(file);
+            AllureLifecycle.Instance.AddAttachment("External_File", "text/plain", bytes);
+            //
+            Thread.Sleep(2000); // DO NOT USE
             driver.Quit();
             log.Info("DONE SoftserveAcademy");
         }

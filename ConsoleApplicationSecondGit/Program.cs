@@ -1,9 +1,11 @@
-﻿//using log4net;
-//using log4net.Config;
-using NLog;
+﻿using log4net;
+using log4net.Config;
+//using NLog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,20 +33,21 @@ namespace ConsoleApplicationSecondGit
             Console.WriteLine("jazzDatabase = " + jazzDatabase);
             //
             Console.WriteLine("\n\n");
+            */
             //
             //BasicConfigurator.Configure();
             //XmlConfigurator.Configure();
             //
-            log.Trace("NLOG: Trace Level test");
-            log.Debug("2*Debug Level test");
-            log.Info("2*Info Level");
-            log.Warn("2*Warn Level");
-            log.Warn("test");
-            log.Error("2*Error Level test");
-            log.Fatal("2*Fatal Level");
+            //log.Trace("NLOG: Trace Level test");
+            //log.Debug("2*Debug Level test");
+            //log.Info("2*Info Level");
+            //log.Warn("2*Warn Level");
+            //log.Warn("test");
+            //log.Error("2*Error Level test");
+            //log.Error("3*Error Level");
+            //log.Fatal("2*Fatal Level");
             //
             Console.WriteLine("Application Done");
-            */
             //
             // 1. Classic Constructor.
             //User user = new User("username1", "password1", "orgPin1", "databaseName1", "email1", "address1");
@@ -110,8 +113,72 @@ namespace ConsoleApplicationSecondGit
             //
             // 7. Add Repository
             // 8. Add Singletone
-            IUser user = UserRepository.Get().Admin();
-            Console.WriteLine(user.Username);
+            //IUser user = UserRepository.Get().Admin();
+            //Console.WriteLine(user.Username);
+            //
+            //StreamReader reader = new StreamReader("D:\\file.txt");
+            //string line;
+            //while ((line = reader.ReadLine()) != null)
+            //{
+            //    Console.WriteLine("line: " + line);
+            //}
+            //reader.Close();
+            //
+            //using (StreamReader reader = new StreamReader("D:\\file.txt"))
+            //{
+            //    string line;
+            //    while ((line = reader.ReadLine()) != null)
+            //    {
+            //        Console.WriteLine("line: " + line);
+            //    }
+            //}
+            //
+            //using (StreamWriter writer = new StreamWriter("D:\\info.txt"))
+            //using (StreamWriter writer = new StreamWriter("D:\\info.txt", true)) // Append
+            //{
+            //    writer.Write("Word 110 ");
+            //    writer.WriteLine("word 210");
+            //    writer.WriteLine("Line 310");
+            //}
+            //
+            //string file = File.ReadAllText("D:\\file.txt");
+            //Console.WriteLine(file);
+            //
+            //string[] lines = File.ReadAllLines("D:\\file.txt");
+            //foreach (string line in lines)
+            //{
+            //    Console.WriteLine("line: " + line);
+            //}
+            //
+            //string[] stringArray = new string[]
+            //{
+            //"cat",
+            //"dog",
+            //"arrow"
+            //};
+            //File.WriteAllLines("D:\\file.txt", stringArray);
+            //
+            //File.AppendAllText("D:\\file.txt", "\nfirst part\n");
+            //
+            //string startupPath = System.IO.Directory.GetCurrentDirectory();
+            //string startupPath = Environment.CurrentDirectory;
+            //string startupPath = System.IO.Path.GetFullPath(".\\");
+            //string startupPath = new Program().GetType().Assembly.Location;
+            string startupPath = AppDomain.CurrentDomain.BaseDirectory;
+            //string startupPath = Directory.GetCurrentDirectory();
+            //string startupPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Program)).CodeBase);
+            Console.WriteLine("startupPath = " + startupPath);
+            //
+            string filename = "allureConfig.json";
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string allureConfigPath = path.Remove(path.IndexOf("bin")) + filename;
+            //FileInfo allureConfig = new FileInfo(allureConfigPath);
+            if (File.Exists(path + filename))
+            {
+                File.Delete(path + filename);
+            }
+            //allureConfig.CopyTo(path + filename);
+            File.Copy(allureConfigPath, path + filename);
         }
     }
 }
